@@ -1,0 +1,22 @@
+{
+  "name": "NFT Gem Sniper Tool (Beta)",
+  "version": "0.01",
+  "description": "Get rare and quality NFTs at your bugdet",
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://magiceden.io/*"],
+      "js": ["scripts/contentScript.js", "src/ranks_extractor.js"],
+      "css": ["scripts/content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "permissions": ["tabs"],
+  "host_permissions": ["<all_urls>"],
+  "manifest_version": 3,
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; connect-src https://* data: blob: filesystem:;"
+  }
+}
