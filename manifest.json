@@ -1,7 +1,7 @@
 {
-  "name": "NFT Gem Sniper Tool (Beta)",
+  "name": "Sol Rarity Hunter (Beta)",
   "version": "0.01",
-  "description": "Get rare and quality NFTs at your bugdet",
+  "description": "Get rare NFTs & insightful data that will help you make a good purchase without leaving the MagicEden marketplace!",
   "background": {
     "service_worker": "scripts/background.js"
   },
@@ -10,7 +10,7 @@
       "matches": ["*://magiceden.io/*"],
       "js": ["scripts/contentScript.js", "src/ranks_extractor.js"],
       "css": ["scripts/content.css"],
-      "run_at": "document_idle"
+      "run_at": "document_end"
     }
   ],
   "permissions": ["tabs"],

@@ -1,8 +1,12 @@
 const injectElements = (elementToBeInjected) => {
   const collectionName = window.location.toString().split("/")[4];
+  var parser = new DOMParser();
   chrome.runtime.sendMessage(
     { collectionName: collectionName },
     function (response) {
+      console.log(response)
+      const howRareData = parser.parseFromString(response.howRareRank, 'text/html')
+      const howRareRank = howRareData.querySelectorAll('div.nfts > div.featured_item > div.featured_image_desc > div.item_stats')
       let magicEdenCardContainer = document.querySelectorAll(
         ".infinite-scroll-component > div.tw-flex.tw-flex-wrap.tw-overflow-hidden > div.grid-card"
       );
@@ -10,34 +14,41 @@ const injectElements = (elementToBeInjected) => {
 
       if (elementToBeInjected !== undefined) {
         console.log("called");
-        injectRankToElement(elementToBeInjected, response.rankData);
+        injectRankToElement(elementToBeInjected, response.moonRankData, howRareRank);
         return;
       }
 
       for (let i = 0; i < cards.length; i++) {
-        injectRankToElement(cards[i], response.rankData);
+        injectRankToElement(cards[i], response.moonRankData);
       }
     }
   );
 };
 
-const injectRankToElement = (element, rankData) => {
-  let rankDiv = document.createElement("span");
-  rankDiv.className = "gachezZone";
+const injectRankToElement = (element, rankData, howRare) => {
+  let parentDiv = document.createElement("div")
+  let rank = document.createElement("span");
+  let pinIcon = document.createElement("div");
+  let pinImg = document.createElement('img')
+  parentDiv.className = "parentDiv"
+  rank.className = "rank";
+  pinIcon.className = "pin"
+  pinImg.className = "pinImg"
+  pinImg.src = "https://cdn-user-icons.flaticon.com/17735/17735582/1642767925932.svg?token=exp=1642768833~hmac=7e432254be92fcd25cc5d8b6eac12a46"
+  pinImg.alt = "pin NFT"
+  pinIcon.appendChild(pinImg)
+  parentDiv.appendChild(rank)
+  parentDiv.appendChild(pinIcon)
   element.style.gap = "10px";
   const itemName = element.querySelector("div > a > h6").textContent;
-  rankDiv.innerHTML = `RANK: ${extractRank(itemName, rankData)}`;
+  rank.innerHTML = `Rank ⍜ ${extractRank(itemName, rankData, howRare)}`;
   const nodeToAppendTo = element.querySelector("div > .mt-auto > div.my-2");
   nodeToAppendTo.querySelector("span").style.width = "fit-content";
   nodeToAppendTo.style.display = "flex";
   nodeToAppendTo.style.justifyContent = "space-between";
-  nodeToAppendTo.appendChild(rankDiv.cloneNode(true));
+  nodeToAppendTo.appendChild(parentDiv.cloneNode(true));
 };
 
-// window.addEventListener(
-//   "load",
-//   (ev) => {
-//     ev.preventDefault();
 setTimeout(function () {
   // it should work
   injectElements();
@@ -66,4 +77,3 @@ setTimeout(function () {
   // Start observing the target node for configured mutations
   observer.observe(targetNode, config);
 }, 4500);
-// );

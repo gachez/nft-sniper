@@ -1,7 +1,27 @@
-.gachezZone{
-    font-size: 32;
-    font-weight: bolder;
+@font-face {
+    font-family: 'lazyDog';
+    src: url('assets/LazyDog.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+     url('assets/lazy_dog.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+  }  
+.parentDiv{
+    display: flex;
+    padding-bottom: 1rem;
+    width: fit-content;
+}  
+.rank{
+    font-size: 1rem;
     color: yellow;
     z-index: 99;
-    padding-bottom: 1rem;
+}
+
+.pin{
+    padding-left: 8px;
+    height: auto;
+    cursor: pointer;
+    bottom: 20px;
+}
+
+.pinImg{
+    height: 36px;
+    object-fit: contain;
 }
