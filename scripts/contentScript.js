@@ -41,12 +41,17 @@ const injectRankToElement = (element, rankData, howRare) => {
   parentDiv.appendChild(pinIcon)
   element.style.gap = "10px";
   const itemName = element.querySelector("div > a > h6").textContent;
-  rank.innerHTML = `Rank ⍜ ${extractRank(itemName, rankData, howRare)}`;
+  const rankNumberData = extractRank(itemName, rankData, howRare)
+  rank.innerHTML = `Rank ⍜ ${rankNumberData}`;
   const nodeToAppendTo = element.querySelector("div > .mt-auto > div.my-2");
   nodeToAppendTo.querySelector("span").style.width = "fit-content";
   nodeToAppendTo.style.display = "flex";
   nodeToAppendTo.style.justifyContent = "space-between";
   nodeToAppendTo.appendChild(parentDiv.cloneNode(true));
+  if(rankNumberData < 250){
+    rank.classList.add(["rareRankColor", "rareRankBorder"])
+  }
+  rank.classList.add("commonRankColor")
 };
 
 setTimeout(function () {
@@ -76,4 +81,4 @@ setTimeout(function () {
 
   // Start observing the target node for configured mutations
   observer.observe(targetNode, config);
-}, 4500);
+}, 3500);
