@@ -34,6 +34,10 @@
 }
 
 .pinImg{
-    height: 36px;
+    height: 32px;
     object-fit: contain;
+}
+.pinImg:hover{
+    height: 36px;
+    transition: 3s linear;
 }
