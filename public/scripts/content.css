@@ -11,6 +11,7 @@
 .rank{
     font-size: 1rem;
     z-index: 99;
+    color: yellow;
 }
 
 .rareRankColor{

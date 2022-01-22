@@ -1,15 +1,10 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if(request.collectionName){
         const urlMoonRank = `https://moonrank.app/mints/${request.collectionName}?after=0&complete=${true}` 
-        const urlHowRare = `https://howrare.is/${request.collectionName}`
-        Promise.all([
-            fetch(urlMoonRank).then(value => value.json()),
-            fetch(urlHowRare).then(value => value.text())
-            ])
-            .then(([moonRankData, howRareRank]) => {
+        fetch(urlMoonRank).then(value => value.json())
+            .then((moonRankData) => {
                 sendResponse({
-                    moonRankData: moonRankData,
-                    howRareRank: howRareRank
+                    moonRankData: moonRankData
                 })
             })
             .catch((err) => {

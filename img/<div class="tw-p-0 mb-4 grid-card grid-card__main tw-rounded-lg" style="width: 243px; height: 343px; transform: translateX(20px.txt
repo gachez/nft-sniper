@@ -1,1 +1,0 @@
-<div class="tw-p-0 mb-4 grid-card grid-card__main tw-rounded-lg" style="width: 243px; height: 343px; transform: translateX(20px) translateY(0px); position: absolute;">

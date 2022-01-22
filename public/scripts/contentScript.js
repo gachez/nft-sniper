@@ -48,12 +48,8 @@ const injectRankToElement = (element, rankData, howRare) => {
   nodeToAppendTo.style.display = "flex";
   nodeToAppendTo.style.justifyContent = "space-between";
   nodeToAppendTo.appendChild(parentDiv.cloneNode(true));
-  if(rankNumberData < 250){
-    rank.classList.add(["rareRankColor", "rareRankBorder"])
-  }
-  rank.classList.add("commonRankColor")
 };
-
+//main function
 setTimeout(function () {
   // it should work
   injectElements();
