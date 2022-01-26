@@ -49,7 +49,7 @@ const outliers = [
 const styles = {
     containerStyle: {
       height: '100%',
-      padding: '1rem',
+      padding: '.45rem',
     },
     topBar: {
         width: '100%',
@@ -68,6 +68,7 @@ const styles = {
         color: 'aliceblue'
     },
     infoContainer: {
+        justifyContent:'center',
         paddingTop: '24px',
         width: '100%',
         height: 'auto'
@@ -83,7 +84,6 @@ const styles = {
         gap: '8px',
     },
     infoGridItem: {
-        justifyContent:'center',
         width: '120px',
         height: '100%',
         borderRadius:'8px',
@@ -139,7 +139,7 @@ export const Home = () => {
                                     <div style={styles.infoTextGrid}>
                                     <span style={styles.infoText} >PRICE: {gem.price}</span>
                                     <span style={styles.infoText} >RANK: {gem.rank}</span>
-                                    <div className="btn btn-warning" >Buy</div>
+                                    <div className="btn btn-danger" >Buy</div>
                                    </div>
                                 </div>
                             )
@@ -159,7 +159,7 @@ export const Home = () => {
                                     <div style={styles.infoTextGrid}>
                                     <span style={styles.infoText} >PRICE: {gem.price}</span>
                                     <span style={styles.infoText} >RANK: {gem.rank}</span>
-                                    <div className="btn btn-warning" >Buy</div>
+                                    <div className="btn btn-primary" >Buy</div>
                                    </div>
                                 </div>
                             )
@@ -168,7 +168,7 @@ export const Home = () => {
                 </div>
             </div>
             <div className="InfoContainer" style={styles.infoContainer}>
-                <h1 className="InfoTitle" style={styles.infoTitle} >Outliers</h1>
+                <h1 className="InfoTitle" style={styles.infoTitle} >Top sales of the day</h1>
                 <div className="InfoGrid" style={styles.infoGrid} >
                     {
                         outliers.map(outlier => {
@@ -178,9 +178,9 @@ export const Home = () => {
                                     <img src={Outlier} style={{width: '100%',height: '80%', objectFit: 'cover' }} />
                                     <div style={styles.infoTextGrid}>
                                     <span style={styles.infoText} >PRICE: {outlier.price}</span>
-                                    <span style={styles.infoText}>SALE PRICE: {outlier.priceSold}</span>
+                                    <span style={styles.infoText}>SP: {outlier.priceSold}</span>
                                     <span style={styles.infoText}>RANK: {outlier.rank}</span>
-                                    <div className="btn btn-warning">Buy</div>
+                                    <div className="btn btn-primary">Buy</div>
                                   </div>
                                 </div>
                             )
