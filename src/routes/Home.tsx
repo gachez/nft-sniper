@@ -86,8 +86,7 @@ const styles = {
     infoGridItem: {
         width: '120px',
         height: '100%',
-        borderRadius:'8px',
-        boxShadow: '1px 1px rgba(255,255,255,0.8)'
+        borderRadius:'8px'
     },
     infoImg: {
         height: '96px',
