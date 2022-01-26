@@ -6,7 +6,7 @@ const injectElements = (elementToBeInjected?: Node) => {
     var parser = new DOMParser();
     chrome.runtime.sendMessage(
       { collectionName: collectionName },
-      function (response) {
+      function (response:any) {
         console.log(response)
         let magicEdenCardContainer = document.querySelectorAll(
           ".infinite-scroll-component > div.tw-flex.tw-flex-wrap.tw-overflow-hidden > div.grid-card"
@@ -51,23 +51,31 @@ const injectElements = (elementToBeInjected?: Node) => {
     el.style.paddingBottom = '1rem'
     el.style.width = 'fit-content'
   }
-  
+  var iterator = 0;   
   const injectRankToElement = (element: any, rankData:any ) => {
-    
-    const itemName:string = element.querySelector("div > a > h6").textContent; 
+
     //create elements
     let parentDiv = document.createElement("div")
     let rank = document.createElement("span");
     let pinIcon = document.createElement("div");
     let pinImg = document.createElement('img')
 
-    pinIcon.className = "pinIcon"
+    const itemName:string = element.querySelector("div > a > h6").textContent;   
+    pinIcon.setAttribute('id', `pinIcon${iterator}`)
+
+    pinIcon.setAttribute('onclick', `(function() {
+      chrome.storage.local.set({'itemSelected': '${itemName}'}, () => {
+        console.log('item name: %s', JSON.stringify(value));
+      }
+      )
+    })();
+      `)
+    
     //
     //link pin icon image
     pinImg.src = "https://cdn-user-icons.flaticon.com/17735/17735582/1642767925932.svg?token=exp=1642768833~hmac=7e432254be92fcd25cc5d8b6eac12a46"
     pinImg.alt = "pin NFT"
-
-    element.style.gap = "10px";   
+    element.style.gap = "10px";
     const rankNumberData:number = extractRank(itemName, rankData)
     //load styles
     pinStyleLoad(pinIcon)
@@ -79,24 +87,14 @@ const injectElements = (elementToBeInjected?: Node) => {
     pinIcon.appendChild(pinImg)
     parentDiv.appendChild(rank)
     parentDiv.appendChild(pinIcon)
-
-    var actualCode = `document.getElementsByClassName('pinIcon')[0]
-                      .addEventListener('click', () => {
-                        localStorage.setItem('pinnedNFTs', itemName)
-                        alert('Item pinned! You can view pinned NFTs by clicking  the extension icon or CTRL + SHIFT + S')
-                      })`;
-
-    var script = document.createElement('script');
-    script.textContent = actualCode;
-    (document.head||document.documentElement).appendChild(script);
-    script.parentNode!.removeChild(script);
-
     rank.innerHTML = `Rank ⍜ ${rankNumberData}`;
     const nodeToAppendTo = element.querySelector("div > .mt-auto > div.my-2");
     nodeToAppendTo.querySelector("span").style.width = "fit-content";
     nodeToAppendTo.style.display = "flex";
     nodeToAppendTo.style.justifyContent = "space-between";
     nodeToAppendTo.appendChild(parentDiv.cloneNode(true));
+    
+    iterator++
   };
   //main function
   setTimeout(function () {
