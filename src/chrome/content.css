@@ -10,9 +10,21 @@
 }  
 .rank{
     font-size: 1rem;
-    color: yellow;
     z-index: 99;
+    color: yellow;
 }
+
+.rareRankColor{
+    color: '#51ff0d';
+}
+.rareRankBorder{
+    border: solid 1px '#51ff0d';
+}
+
+.commonRankColor{
+    color: yellow;
+}
+
 
 .pin{
     padding-left: 8px;
@@ -22,6 +34,10 @@
 }
 
 .pinImg{
-    height: 36px;
+    height: 32px;
     object-fit: contain;
+}
+.pinImg:hover{
+    height: 36px;
+    transition: 3s linear;
 }

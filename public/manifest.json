@@ -1,0 +1,43 @@
+{
+  "name": "Sol Rarity Hunter (Beta)",
+  "description" : "This tool helps enhance your shopping experience in the most popular NFT marketplace on Solana, MagicEden, by providing insightful and actionable data to help make the best investment",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "browser_action": {
+    "default_popup": "index.html",
+    "default_title": "Solana Rarity Hunter - Enhancing your NFT shopping experience"
+  },
+"commands": {
+"_execute_browser_action": {
+    "suggested_key": {
+          "default": "Ctrl+Shift+S"
+        }
+  }
+},
+  "icons": {
+    "16": "diamond3.png",
+    "64": "diamond5.png",
+    "128": "diamond6.png"
+  },
+  "background": {
+    "scripts": [
+      "./static/js/background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./static/js/content.js"],
+      "all_frames": false,
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "optional_permissions": [
+    "<all_urls>"
+  ]
+}
