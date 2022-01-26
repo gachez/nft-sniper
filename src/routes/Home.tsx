@@ -11,17 +11,20 @@ const gems = [
     {
         gemImg: Gem,
         price: 10.1 ,
-        rank: 90
+        rank: 90,
+        buyUrl: ''
     },
     {
         gemImg: Gem,
         price: 10.1 ,
-        rank: 90
+        rank: 90,
+        buyUrl: ''
     },
     {
         gemImg: Gem,
         price: 10.1 ,
-        rank: 90
+        rank: 90,
+        buyUrl: ''
     }
 ]
 
@@ -30,19 +33,22 @@ const outliers = [
         outlierImg: Outlier,
         priceSold: 5.99,
         price: 10.1 ,
-        rank: 90
+        rank: 90,
+        buyUrl: ''
     },
     {
         outlierImg: Outlier,
         priceSold: 5.99,
         price: 10.1 ,
-        rank: 90
+        rank: 90,
+        buyUrl: ''
     },
     {
         gemImg: Outlier,
         priceSold: 5.99,
         price: 10.1 ,
-        rank: 90
+        rank: 90,
+        buyUrl: ''
     }
 ]
 
@@ -96,7 +102,9 @@ const styles = {
         display: 'grid',
     },
     infoText: {
+        padding: '4px',
         color: 'white',
+        fontSize: '12px'
     },
     infoBtn: {
     }
@@ -120,7 +128,6 @@ export const Home = () => {
             <header className="TopBar" style={styles.topBar} >
                 <img src={Logo} className="logo" style={styles.logo} />
                 <div className="stats" style={styles.stats}>
-                    <span className="statsTitle">Current stats</span>
                     <div className="statsInfo"><span>Enhance your shopping experience</span></div>
                 </div>
             </header>
@@ -136,8 +143,8 @@ export const Home = () => {
                                 <div className="InfoGridItem" style={styles.infoGridItem}>
                                     <img src={Gem} style={{width: '100%',height: '80%', objectFit: 'cover' }} />
                                     <div style={styles.infoTextGrid}>
-                                    <span style={styles.infoText} >PRICE: {gem.price}</span>
-                                    <span style={styles.infoText} >RANK: {gem.rank}</span>
+                                    <span style={styles.infoText} ><strong>PRICE:</strong> {gem.price}</span>
+                                    <span style={styles.infoText} ><strong>RANK:</strong> {gem.rank}</span>
                                     <div className="btn btn-danger" >Buy</div>
                                    </div>
                                 </div>
@@ -156,8 +163,8 @@ export const Home = () => {
 
                                     <img src={Outlier} style={{width: '100%',height: '80%', objectFit: 'cover' }} />
                                     <div style={styles.infoTextGrid}>
-                                    <span style={styles.infoText} >PRICE: {gem.price}</span>
-                                    <span style={styles.infoText} >RANK: {gem.rank}</span>
+                                    <span style={styles.infoText} ><strong>PRICE:</strong> {gem.price}</span>
+                                    <span style={styles.infoText} ><strong>RANK:</strong> {gem.rank}</span>
                                     <div className="btn btn-primary" >Buy</div>
                                    </div>
                                 </div>
@@ -176,9 +183,9 @@ export const Home = () => {
 
                                     <img src={Outlier} style={{width: '100%',height: '80%', objectFit: 'cover' }} />
                                     <div style={styles.infoTextGrid}>
-                                    <span style={styles.infoText} >PRICE: {outlier.price}</span>
-                                    <span style={styles.infoText}>SP: {outlier.priceSold}</span>
-                                    <span style={styles.infoText}>RANK: {outlier.rank}</span>
+                                    <span style={styles.infoText} ><strong>PRICE:</strong> {outlier.price}</span>
+                                    <span style={styles.infoText}><strong>SP:</strong> {outlier.priceSold}</span>
+                                    <span style={styles.infoText}><strong>RANK:</strong> {outlier.rank}</span>
                                     <div className="btn btn-primary">Buy</div>
                                   </div>
                                 </div>
