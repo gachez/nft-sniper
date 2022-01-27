@@ -1,3 +1,6 @@
-.infoGridItem {
+.InfoGrid {
+    overflow-x: scroll;
+}
+.InfoGridItem {
     position: relative;
 }
